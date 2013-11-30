@@ -1,0 +1,12 @@
+{
+  "osm": {
+    "config": {
+      "psql": {
+        "data_directory": "/mnt1/postgres"
+      }
+    }
+  },
+  "run_list": [
+    "recipe[osm::install_from_sources]"
+  ]
+}
