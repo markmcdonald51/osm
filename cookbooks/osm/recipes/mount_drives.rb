@@ -18,6 +18,7 @@ ruby_block "mount_drives" do
                     `mkdir -p /mnt#{count}`
                     mount_point = "/mnt#{count}"
                     fstab << "#{device}     /mnt#{count}  #{desired_type} defaults,nobootwait,comment=cloudconfig      0       2"
+                    count = count + 1
             else
                     # get mount point
                     mount_point = `mount -l | grep #{device}`.chomp.split(" ")[1]
