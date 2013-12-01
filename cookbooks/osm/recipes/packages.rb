@@ -58,11 +58,15 @@ postgresql-server-dev-9.1
 end
 
 bash "remove-libgeos-dev" do
-  code "sudo apt-get remove libgeos-dev"
+  code <<-EOH
+    sudo apt-get -y remove libgeos-dev
+    sudo apt-get -y autoremove
+  EOH
 end
 
 bash "libgeos-install" do
   code <<-EOH
+    rm -Rf /tmp/libgeos
     mkdir /tmp/libgeos && cd /tmp/libgeos
     git clone https://github.com/libgeos/libgeos.git
     cd libgeos
