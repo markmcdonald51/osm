@@ -23,7 +23,10 @@ ruby_block "mount_drives" do
                     # get mount point
                     mount_point = `mount -l | grep #{device}`.chomp.split(" ")[1]
                     options = ( mount_point == "/" ? "defaults" : "defaults,nobootwait,comment=cloudconfig" )
-                    fstab << "#{device}     #{mount_point}  #{type} #{options}      0       2"
+                    unless label.empty?
+                      device = "LABEL=#{label}"
+                    end
+                    fstab << "#{device}     #{mount_point}  #{type} #{options}      0       #{( mount_point == "/" ? "0" : "2" )}"
             end
     }
     `rm -Rf /etc/fstab`
