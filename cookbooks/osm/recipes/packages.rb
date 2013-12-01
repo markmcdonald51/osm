@@ -30,7 +30,6 @@ build-essential
 autoconf
 libtool
 libxml2-dev
-libgeos-dev
 libpq-dev
 libbz2-dev
 proj
