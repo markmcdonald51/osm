@@ -30,6 +30,7 @@ build-essential
 autoconf
 libtool
 libxml2-dev
+libgeos-dev
 libpq-dev
 libbz2-dev
 proj
@@ -54,4 +55,22 @@ postgresql-contrib
 postgresql-server-dev-9.1
 ].each do |pkg_name|
   package pkg_name
+end
+
+bash "remove-libgeos-dev" do
+  code "sudo apt-get remove libgeos-dev"
+end
+
+bash "libgeos-install" do
+  code <<-EOH
+    mkdir /tmp/libgeos && cd /tmp/libgeos
+    git clone https://github.com/libgeos/libgeos.git
+    cd libgeos
+    ./autogen.sh
+    ./configure
+    make
+    make check
+    sudo make install # as root
+    sudo ldconfig
+  EOH
 end
