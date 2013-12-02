@@ -22,7 +22,10 @@ ruby_block "mount_drives" do
             else
                     # get mount point
                     mount_point = `mount -l | grep #{device}`.chomp.split(" ")[2]
-                    mount_point = "/mnt#{count}" if mount_point == ""
+                    if mount_point.nil?
+                        `mkdir -p /mnt#{count}`
+                        mount_point = "/mnt#{count}" 
+                    end
                     options = ( mount_point == "/" ? "defaults" : "defaults,nobootwait,comment=cloudconfig" )
                     unless label.empty?
                       device = "LABEL=#{label}"
