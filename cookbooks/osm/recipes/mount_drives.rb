@@ -22,16 +22,16 @@ ruby_block "mount_drives" do
             else
                     # get mount point
                     mount_point = `mount -l | grep #{device}`.chomp.split(" ")[2]
-                    if mount_point.nil?
+                    if mount_point.nil? or mount_point == "/mnt"
                         `mkdir -p /mnt#{count}`
                         mount_point = "/mnt#{count}" 
+                        count = count + 1
                     end
                     options = ( mount_point == "/" ? "defaults" : "defaults,nobootwait,comment=cloudconfig" )
                     unless label.empty?
                       device = "LABEL=#{label}"
                     end
                     fstab << "#{device}     #{mount_point}  #{type} #{options}      0       #{( mount_point == "/" ? "0" : "2" )}"
-                    count = count + 1
             end
     }
     `rm -Rf /etc/fstab`
