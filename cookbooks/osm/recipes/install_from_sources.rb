@@ -1,4 +1,5 @@
 include_recipe "osm::mount_drives"
+include_recipe "osm::swap"
 include_recipe "osm::packages"
 include_recipe "osm::postgres"
 include_recipe "osm::postgres_shared_buffers"

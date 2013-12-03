@@ -57,6 +57,9 @@ postgresql-server-dev-9.1
   package pkg_name
 end
 
+# These are here to cover the issue related to a bug in libgeos-dev
+# the issue is explained here:
+# http://gis.stackexchange.com/a/74499
 bash "remove-libgeos-dev" do
   code <<-EOH
     sudo apt-get -y remove libgeos-dev
