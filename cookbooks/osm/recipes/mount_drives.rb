@@ -6,7 +6,7 @@ ruby_block "mount_drives" do
   block do
     fstab = []
     count = 1
-    desired_type = "ext4"
+    desired_type = "ext3"
     `fdisk -l 2>&1 | grep doesn`.split("\n").each{|line|
             device = line.split(" ")[1]
             uuid = `blkid -o value -s UUID #{device}`.chomp
