@@ -32,6 +32,8 @@ Download should take about 7 minutes. After the file is downloaded execute the f
 
 No `--slim` required but `swap` is necessary. This cookbook assumes that the instance comes up with 2 drives (instance storage), both SSD. You will need a lot of storage and `c3.8xlarge` is not enough.
 
+The weird thing is, on `h1.4xlarge` `osm2pgsql` is going to eat up all virtual and physical memory so swap is required. I've noticed that `-C` argument has no effect. All these arguments work fine on `c3.8xlarge`. I have no clue why this is but swap on SSDs fixes it.
+
 To see the progress:
 
     tail -F /mnt2/nohup.out
