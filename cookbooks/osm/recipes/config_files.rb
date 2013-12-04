@@ -13,7 +13,7 @@ template "#{node[:osm][:install_dir]}/mapnik_style/inc/fontset-settings.xml.inc"
   variables( :config => node[:osm][:config] )
 end
 
-template "/usr/local/etc/renderd.conf" do
+template "#{node[:osm][:install_dir]}/renderd.conf" do
   source "renderd.conf.erb"
   variables( :install_dir => node[:osm][:install_dir], :config => node[:osm][:config] )
 end

@@ -1,3 +1,5 @@
+node.set[:osm][:superuser_name] = `whoami`.chomp if node[:osm][:superuser_name] == "__runtime__"
+
 bash "postgres-ensure-directory" do
   code <<-EOH
     mkdir -p #{node[:osm][:config][:psql][:data_directory]}

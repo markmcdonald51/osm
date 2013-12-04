@@ -1,8 +1,7 @@
 bash "mapnik-install" do
   code <<-EOH
-    mkdir /tmp/mapnik && cd /tmp/mapnik
-    git clone #{node[:osm][:mapnik][:repo]}
-    cd mapnik
+    mkdir #{node[:osm][:install_dir]}/mapnik && cd #{node[:osm][:install_dir]}/mapnik
+    git clone #{node[:osm][:mapnik][:repo]} .
     git branch #{node[:osm][:mapnik][:revision]} origin/#{node[:osm][:mapnik][:revision]}
     git checkout #{node[:osm][:mapnik][:revision]}
 

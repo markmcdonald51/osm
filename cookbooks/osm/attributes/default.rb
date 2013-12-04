@@ -1,7 +1,7 @@
 default[:osm][:install_dir] = "/etc/osm"
 
 default[:osm][:postgre_username] = "postgres"
-default[:osm][:superuser_name] = "osm"
+default[:osm][:superuser_name] = "__runtime__"
 default[:osm][:gis_database_name] = "gis"
 default[:osm][:postgis_sql] = "/usr/share/postgresql/9.1/contrib/postgis-1.5/postgis.sql"
 
@@ -38,3 +38,6 @@ default[:osm][:config][:renderd][:tile_dir] = "/var/lib/mod_tile"
 default[:osm][:config][:renderd][:plugins_dir] = "/usr/local/lib/mapnik/input"
 default[:osm][:config][:renderd][:font_dir] = "/usr/share/fonts/truetype/ttf-dejavu"
 default[:osm][:config][:renderd][:host] = "localhost"
+
+default[:osm][:config][:swap][:location] = "/mnt2/swapfile"
+default[:osm][:config][:swap][:size] = 102400 # MB

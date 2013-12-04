@@ -1,6 +1,6 @@
 bash "modtile-install" do
   code <<-EOH
-    mkdir /tmp/mod-tile && cd /tmp/mod-tile
+    mkdir #{node[:osm][:install_dir]}/mod-tile && cd #{node[:osm][:install_dir]}/mod-tile
     git clone #{node[:osm][:modtile][:repo]}
     cd mod_tile
     ./autogen.sh
